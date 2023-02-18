@@ -4,6 +4,7 @@
 $LaTeX$ using TikZ.
 
 [![License](https://img.shields.io/github/license/basseches/cabret)](https://github.com/basseches/cabret)
+![GitHub issues](https://img.shields.io/github/issues/basseches/cabret)
 
 ## Overview
 
