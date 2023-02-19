@@ -31,12 +31,12 @@
         text height=1.5ex,
         double,
         double distance = 0.07cm,
-        ] (#1)
-        {#2 \nodepart{second}
+        rectangle split draw splits=false] (#1) {#2 \nodepart{two}
             \begin{tabular}{>{\raggedright\arraybackslash}p{8.5em}}
                 #3
             \end{tabular}
         };%
+        \draw[shorten <=0.05cm, shorten >=0.05cm] (#1.text split west) -- (#1.text split east);
     }},
     pics/relattribute/.style n args={2}{code={%
         \node[draw,
@@ -73,69 +73,73 @@
         zig zag to
     },
     one line arrow/.style={% generic line with an arrow at one end
-        -{Straight Barb[scale=2]}, zig zag to
+        -{Classical TikZ Rightarrow[sharp, scale=2.5]},
+        zig zag to
     },
     double line/.style={% for total participation (double lines)
-        zig zag to, double, double distance = 0.07cm
+        zig zag to, double, double distance = 0.07cm,
+        shorten <=-0.07cm
     },
     double line arrow/.style={% for total participation, with an arrow
-        -{Straight Barb[scale=0.7]}, zig zag to, double,
-        double distance = 0.07cm
+        -{Classical TikZ Rightarrow[sharp, scale=0.8]},
+        zig zag to,
+        double, double distance = 0.07cm,
+        shorten <=-0.1cm, shorten >=0.04cm
     },
     dashed line/.style={% for relationship attributes
-        zig zag to, dashed
+        zig zag to, dashed,
+        shorten <=0.05cm
     },
     specialization/.style={% for specialization
         -{Latex[round,open,scale=2]}, zig zag to
     }
-}
-\begin{document}
+}\begin{document}
     \begin{center}
         \begin{tikzpicture}
-            \pic {entity={140358354984912}{Journal}{%
+            \pic {entity={140328131125200}{Journal}{%
                 name\\
                 \underline{ISBN number}\\
                 title\\
                 pub freq\\
                 subscription price\\
             }};
-            \pic[right=3em of 140358354984912] {relationship={140358391825792}{edited-by}};
-            \pic[right=3em of 140358391825792] {entity={140358354984816}{Editor-in-chief}{%
+            \pic[right=3em of 140328131125200] {relationship={140328132235072}{edited-by}};
+            \pic[right=3em of 140328132235072] {entity={140328131125104}{Editor-in-chief}{%
                 name\\
                 personal affiliation\\
                 \underline{email}\\
             }};
-            \draw[double line] (140358391825792.west) -- (140358354984912.east);
-            \draw[one line arrow] (140358391825792.east) -- (140358354984816.west);
-            \pic[below=3em of 140358354984912] {defrelationship={140358391825792}{issues}};
-            \pic[below=3em of 140358391825792] {weakentity={140358354984768}{Issue}{%
+            \draw[double line] (140328132235072.west) -- (140328131125200.east);
+            \draw[one line arrow] (140328132235072.east) -- (140328131125104.west);
+            \pic[below=3em of 140328131125200] {defrelationship={140328132235072}{issues}};
+            \pic[below=3em of 140328132235072] {weakentity={140328131125056}{Issue}{%
                 \dashuline{issue-num}\\
             }};
-            \draw[one line arrow] (140358391825792.north) -- (140358354984912.south);
-            \draw[double line] (140358391825792.south) -- (140358354984768.north);
-            \pic[right=2em of 140358391825792] {relattribute={a140358391825792}{%
+            \draw[one line arrow] (140328132235072.north) -- (140328131125200.south);
+            \draw[double line] (140328132235072.south) -- (140328131125056.north);
+            \pic[right=2em of 140328132235072] {relattribute={a140328132235072}{%
                 publication-date
             }};
-            \draw[dashed line] (140358391825792.east) -- (a140358391825792.west);
-            \pic[right=3em of 140358354984768] {relationship={140358391825792}{contains}};
-            \pic[right=3em of 140358391825792] {entity={140358355262528}{Article}{%
+            \draw[dashed line] (140328132235072.east) -- (a140328132235072.west);
+            \pic[right=3em of 140328131125056] {relationship={140328132235072}{contains}};
+            \pic[right=3em of 140328132235072] {entity={140328131123856}{Article}{%
                 \underline{doi-identifier}\\
                 title\\
                 page range\\
             }};
-            \draw[double line arrow] (140358391825792.west) -- (140358354984768.east);
-            \draw[double line] (140358391825792.east) -- (140358355262528.west);
-            \pic[below=3em of 140358355262528] {relationship={140358391825792}{authored-by}};
-            \pic[below=3em of 140358391825792] {entity={140358355262912}{Author}{%
+            \draw[double line arrow] (140328132235072.west) -- (140328131125056.east);
+            \draw[double line] (140328132235072.east) -- (140328131123856.west);
+            \pic[below=3em of 140328131123856] {relationship={140328132235072}{authored-by}};
+            \pic[below=3em of 140328132235072] {entity={140328132233776}{Author}{%
                 name\\
                 \underline{author-id}\\
             }};
-            \draw[double line] (140358391825792.north) -- (140358355262528.south);
-            \draw[one line] (140358391825792.south) -- (140358355262912.north);
-            \pic[below=3em of 140358355262912] {entity={140358391825936}{Contact author}{%
+            \draw[double line] (140328132235072.north) -- (140328131123856.south);
+            \draw[one line] (140328132235072.south) -- (140328132233776.north);
+            \pic[below=3em of 140328132233776] {entity={140328132232288}{Contact author}{%
                 \underline{contact email}\\
             }};
-            \draw[specialization] (140358391825936.north) -- (140358355262912.south);
+            \draw[specialization] (140328132232288.north) -- (140328132233776.south);
         \end{tikzpicture}
     \end{center}
 \end{document}
