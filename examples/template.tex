@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{array}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+
+\usepackage[normalem]{ulem}
+
+\tikzset{%
+    pics/entity/.style n args={3}{code={%
+        \node[draw,
+        rectangle split,
+        rectangle split parts=2,
+        text height=1.5ex,
+        ] (#1)
+        {#2 \nodepart{second}
+            \begin{tabular}{>{\raggedright\arraybackslash}p{8.5em}}
+                #3
+            \end{tabular}
+        };%
+    }},
+    pics/weakentity/.style n args={3}{code={%
+        \node[draw,
+        rectangle split,
+        rectangle split parts=2,
+        text height=1.5ex,
+        double,
+        double distance = 0.07cm,
+        ] (#1)
+        {#2 \nodepart{second}
+            \begin{tabular}{>{\raggedright\arraybackslash}p{8.5em}}
+                #3
+            \end{tabular}
+        };%
+    }},
+    pics/relattribute/.style n args={2}{code={%
+        \node[draw,
+        text height=1.5ex,
+        ] (#1)
+        {#2};%
+    }},
+    pics/relationship/.style n args={2}{code={
+        \node[draw,
+        diamond,
+        aspect=2,
+        align=center,
+        text height=1.5ex,
+        ] (#1)
+        {#2};%
+    }},
+    pics/defrelationship/.style n args={2}{code={
+        \node[draw,
+        diamond,
+        aspect=2,
+        align=center,
+        text height=1.5ex,
+        double,
+        double distance = 0.07cm,
+        ] (#1)
+        {#2};%
+    }},
+    zig zag to/.style={% lines between entities and relationships
+        to path={(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |-
+        (\tikztotarget)}
+    },
+    zig zag to/.default=0.5,
+    one line/.style={% generic line
+        zig zag to
+    },
+    one line arrow/.style={% generic line with an arrow at one end
+        -{Straight Barb[scale=2]}, zig zag to
+    },
+    double line/.style={% for total participation (double lines)
+        zig zag to, double, double distance = 0.07cm
+    },
+    double line arrow/.style={% for total participation, with an arrow
+        -{Straight Barb[scale=0.7]}, zig zag to, double,
+        double distance = 0.07cm
+    },
+    dashed line/.style={% for relationship attributes
+        zig zag to, dashed
+    },
+    specialization/.style={% for specialization
+        -{Latex[round,open,scale=2]}, zig zag to
+    }
+}
