@@ -16,3 +16,16 @@ In order to output as a PDF, you'll need to install some software that includes
 
 *An entity-relationship diagram is more of an ontology than a taxonomy, but
 when the shoe fits...
+
+## Testing
+
+For the unit tests, run `make test` or `make coverage` (for coverage report) at
+the top-level directory. For the integration tests, run `make test` in
+`texonomy/tests/integration_tests`. The output will be stored in
+`texonomy/tests/integration_tests/pdf` and
+`texonomy/tests/integration_tests/tex`.
+
+## Linting and formatting
+
+Run `make lint` at the top-level directory to lint, and `make format` to
+format.

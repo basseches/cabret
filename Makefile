@@ -35,9 +35,9 @@ checks: check
 annotate:  ## run type checking
 	python -m mypy ./texonomy
 
-#########
-# TESTS #
-#########
+##############
+# UNIT TESTS #
+##############
 test: ## clean and run unit tests
 	python -m pytest -v texonomy/tests
 
