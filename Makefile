@@ -47,21 +47,6 @@ coverage:  ## clean and run unit tests with coverage
 # Alias
 tests: test
 
-###########
-# VERSION #
-###########
-show-version:
-	bump2version --dry-run --allow-dirty setup.py --list | grep current | awk -F= '{print $2}'
-
-patch:
-	bump2version patch
-
-minor:
-	bump2version minor
-
-major:
-	bump2version major
-
 ########
 # DIST #
 ########

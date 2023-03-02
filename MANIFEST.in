@@ -2,11 +2,14 @@ graft texonomy
 
 include LICENSE
 include README.md
+include *.md
 
 include Makefile
 
 prune .github
 exclude .gitignore
+
+recursive-include texonomy *.tex
 
 # Patterns to exclude from any directory
 global-exclude *~
