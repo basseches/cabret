@@ -39,17 +39,17 @@ class Entity:
     def __init__(self, name: str, attributes: List[str], weak: bool = False) -> None:
         self.name = name
         self.weak = weak
-        # the first attrib specified will defualt to the primary key
-        self.primary = 0
         self.attributes = []
         for attribute in attributes:
             self.attributes.append(attribute)
+        # the first attrib specified will defualt to the primary key
+        self.primary = 0 if self.attributes else -1
 
     def __str__(self) -> None:
         return (
             f"{self.name} ({'Weak ' if self.weak else ''}Entity)\n"
             f"Attributes: {self.attributes}\n\n"
-            f"Primary: {self.attributes[self.primary]}"
+            f"Primary: {'None' if self.primary == -1 else self.attributes[self.primary]}"
         )
 
     def add_attribute(self, attribute: str) -> None:
