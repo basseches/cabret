@@ -1,3 +1,5 @@
+"""Test: Creates ERD with, well, everything."""
+
 import os
 
 from texonomy import Entity, ERDiagram, Relationship, Direction, MANY_TO_EXACTLY_ONE, EXACTLY_ONE_TO_MANY

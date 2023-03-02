@@ -2,7 +2,7 @@
 
 import os
 
-from texonomy import Entity, Relationship, ERDiagram, EXACTLY_ONE_TO_MANY, Direction
+from texonomy import Entity, ERDiagram
 
 author = Entity("Author", ["name", "author-id"])
 author.set_primary("author-id")
