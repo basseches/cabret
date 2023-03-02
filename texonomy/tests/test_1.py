@@ -4,6 +4,7 @@ import os
 
 from texonomy import Entity, ERDiagram, Relationship, Direction, MANY_TO_EXACTLY_ONE, EXACTLY_ONE_TO_MANY
 
+
 def test():
     journal = Entity("Journal", ["name", "ISBN number", "title", "pub freq", "subscription price"])
     journal.set_primary("ISBN number")
