@@ -6,4 +6,4 @@ test:
 
 .PHONY: clean
 clean:
-	rm -rf pdf tex
+	rm -rf pdf tex .coverage
