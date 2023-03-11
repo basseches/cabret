@@ -4,6 +4,7 @@
 entity-relationship diagrams in $\LaTeX$ using TikZ.
 
 [![License](https://img.shields.io/github/license/basseches/texonomy)](https://github.com/basseches/texonomy)
+![GitHub issues](https://img.shields.io/github/issues/basseches/texonomy)
 
 ## Overview
 
