@@ -10,6 +10,7 @@ prune .github
 exclude .gitignore
 
 recursive-include texonomy *.tex
+recursive-include examples *.pdf
 
 # Patterns to exclude from any directory
 global-exclude *~
