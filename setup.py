@@ -1,5 +1,3 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
-setup(
-    name="texonomy", include_package_data=True, package_data={'': ['templates/template.tex']}, packages=find_packages()
-)
+setup()
