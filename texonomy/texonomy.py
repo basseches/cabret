@@ -5,7 +5,6 @@ from typing import List, Optional, Tuple
 try:
     import importlib.resources as pkg_resources
 except ImportError:
-    # Try backported to PY<37 `importlib_resources`.
     import importlib_resources as pkg_resources
 
 from . import templates
@@ -23,6 +22,8 @@ EXACTLY_ONE_TO_MANY = ((0, -1), (1, 1))
 
 
 class Direction(Enum):
+    """An enum wrapping the relative position of an entity in the ERD."""
+
     ABOVE = "above"
     BELOW = "below"
     RIGHT = "right"
@@ -31,21 +32,42 @@ class Direction(Enum):
 
 @dataclass
 class Entity:
+    """An object representing an entity in the diagram.
+
+    Attributes:
+        name (`str`): The display name of the entity.
+        attributes (:obj:`list` of str): A list of this entity's
+            attributes, which are displayed on the diagram.
+        primary (`int`): The index of the primary key in the attributes list
+            (by default it's 0).
+        weak (`bool`): True if the entity is weak, False if not.
+    """
+
     name: str
     attributes: List[str]
-    primary: int  # index into attributes list
+    primary: int
     weak: bool
 
     def __init__(self, name: str, attributes: List[str], weak: bool = False) -> None:
+        """Initializes an Entity object.
+
+        Args:
+            name (`str`): The display name of the entity.
+            attributes (:obj:`list` of `str`): A list of this entity's
+                attributes, which are displayed on the diagram.
+            weak (`bool`): True if the entity is weak, False if not. Defaults
+                to False.
+        """
         self.name = name
         self.weak = weak
         self.attributes = []
         for attribute in attributes:
             self.attributes.append(attribute)
-        # the first attrib specified will defualt to the primary key
+        # the first attribute specified will defualt to the primary key
         self.primary = 0 if self.attributes else -1
 
     def __str__(self) -> None:
+        """Formats an `Entity`'s fields in a readable way."""
         return (
             f"{self.name} ({'Weak ' if self.weak else ''}Entity)\n"
             f"Attributes: {self.attributes}\n\n"
@@ -53,9 +75,24 @@ class Entity:
         )
 
     def add_attribute(self, attribute: str) -> None:
+        """Adds an attribute to the end of the `Entity`'s attributes list.
+
+        Args:
+            attribute (`str`): The attribute to be added to the list.
+        """
         self.attributes.append(attribute)
 
     def set_primary(self, attribute: str) -> None:
+        """Sets the primary key to an existing attribute, referenced by name.
+
+        Args:
+            attribute (`str`): The name of the attribute to be set as new
+                primary key.
+
+        Raises:
+            `ValueError`: If `attribute` does not exist in the Entity's list of
+                attributes.
+        """
         for idx, att in enumerate(self.attributes):
             if att == attribute:
                 self.primary = idx
@@ -64,6 +101,11 @@ class Entity:
 
     # TODO: deal with empty attributes
     def to_latex(self) -> str:
+        """Generates the LaTeX code associated with this Entity object.
+
+        Returns:
+            `str`: The LaTeX code, as a string.
+        """
         code = f"{{{'weak' if self.weak else ''}" f"entity={{{id(self)}}}{{{self.name}}}{{%"
         for idx, attribute in enumerate(self.attributes):
             code += f"\n{INDENTATION[-1]}"
@@ -77,6 +119,22 @@ class Entity:
 
 @dataclass
 class Relationship:
+    """An object representing a relationship between two entities in the diagram.
+
+    Attributes:
+        anchor (`Entity`): The existing entity in the diagram to which the new
+            entity should be attached.
+        new_entity (`Entity`): The new entity to attach to this diagram.
+        label (str): The display label given to this relationship; will be
+            shown on the diagram.
+        cardinality (:obj:`Tuple` of two :obj:`Tuple`s of `int`): The
+            cardinality of this relationship (e.g., one-to-many).
+        direction (`Direction`): The relative positioning of the new entity
+            with respect to the anchor entity.
+        attributes (:obj:`list` of `str`, optional): The attributes attached to
+            this relationship, if any.
+    """
+
     anchor: Entity
     new_entity: Entity
     label: str
@@ -85,12 +143,23 @@ class Relationship:
     attributes: Optional[List[str]] = None
 
     def __str__(self):
+        """Formats an `Entity`'s fields in a readable way."""
         return f"{self.label}: [{self.anchor.name} to {self.new_entity.name}]"
 
     def add_attribute(self, attribute: str) -> None:
+        """Adds an attribute to the end of the `Relationship`'s attributes list.
+
+        Args:
+            attribute (`str`): The attribute to be added to the list.
+        """
         self.attributes.append(attribute)
 
     def attributes_to_latex(self) -> str:
+        """Generates the LaTeX code associated with this `Relationship`'s attributes.
+
+        Returns:
+            `str`: The LaTeX code, as a string.
+        """
         code = f"{{relattribute={{a{id(self)}}}{{%"
 
         if len(self.attributes) == 1:
@@ -136,14 +205,40 @@ def get_line_anchors(direction: Direction) -> Tuple[str, str]:
 
 @dataclass
 class ERDiagram:
+    """An object representing the entity-relationship diagram.
+
+    Attributes:
+        entities (:obj:`list` of `Entity`): The entities in this diagram.
+        code (`str`): The LaTeX code that corresponds to all the entities and
+            relationships in this diagram.
+    """
+
     entities: List[Entity]
     code: str
 
     def __init__(self, entity: Entity) -> None:
+        """Initializes an ERDiagram object.
+
+        Args:
+            entity (`Entity`): The first entity in this diagram.
+        """
         self.entities = [entity]
         self.code = fr"{INDENTATION[-2]}\pic {entity.to_latex()}" + "\n"
 
     def add_relationship(self, rel: Relationship, defining: bool = False) -> None:
+        """Adds a relationship (and, therefore, another entity) to the ER diagram.
+
+        Args:
+            rel (`Relationship`): The Relationship object corresponding to one
+                anchor entity (already in this diagram) and one new entity to
+                be added to this diagram.
+            defining (`bool`): True if this relationship is the defining
+                relationship of a weak entity, False otherwise. Defaults to
+                False.
+
+        Raises:
+            `ValueError`: If the anchor does not already exist in the diagram.
+        """
         if rel.anchor not in self.entities:
             raise ValueError("Anchor does not exist in the diagram.")
         self.entities.append(rel.new_entity)
@@ -200,6 +295,18 @@ class ERDiagram:
             )
 
     def add_specialization(self, superclass: Entity, subclass: Entity) -> None:
+        """Adds a specialization relationship to the ER diagram.
+
+        Args:
+            superclass (`Entity`): The Entity object corresponding to an
+                anchor entity (must already exist in this diagram), from which
+                the subclass will specialize.
+            subclass (`Entity`): The Entity object corresponding to a new
+                entity which is a specialization of the superclass entity.
+
+        Raises:
+            `ValueError`: If the superclass does not exist in the diagram.
+        """
         if superclass not in self.entities:
             raise ValueError("Anchor does not exist in the diagram.")
         self.entities.append(subclass)
@@ -211,6 +318,11 @@ class ERDiagram:
         self.code += f"({id(subclass)}.north) -- ({id(superclass)}.south);\n"
 
     def to_latex(self) -> str:
+        """Generates the LaTeX code associated with this diagram.
+
+        Returns:
+            `str`: The LaTeX code, as a string.
+        """
         prelude = pkg_resources.read_text(templates, 'template.tex')
 
         return (

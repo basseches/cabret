@@ -8,6 +8,7 @@ include Makefile
 
 prune .github
 exclude .gitignore
+prune docs
 
 recursive-include texonomy *.tex
 recursive-include examples *.pdf
