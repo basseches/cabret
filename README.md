@@ -7,7 +7,8 @@ entity-relationship diagrams in $\LaTeX$ using TikZ.
 [![Build Status](https://github.com/basseches/texonomy/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/basseches/texonomy/actions?query=workflow%3A%22Build+Status%22)
 [![codecov](https://codecov.io/gh/basseches/texonomy/branch/main/graph/badge.svg)](https://codecov.io/gh/basseches/texonomy)
 [![PyPI](https://img.shields.io/pypi/v/texonomy)](https://pypi.org/project/texonomy/)
-
+[![Docs](https://img.shields.io/badge/-docs-blueviolet)](https://basseches.github.io/texonomy)
+https://basseches.github.io/texonomy/
 *An entity-relationship diagram is more of an ontology than a taxonomy, but
 when the shoe fits...
 
