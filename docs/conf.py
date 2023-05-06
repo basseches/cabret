@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath('..'))
 project = 'texonomy'
 copyright = '2023, Ivy Basseches'
 author = 'Ivy Basseches'
-release = '0.1.2'
+release = '0.2.0'
 
 # -- General configuration ---------------------------------------------------
 
