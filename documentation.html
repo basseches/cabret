@@ -1,0 +1,597 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Examples" href="examples.html" />
+
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+        <title>Documentation - texonomy 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">texonomy 0.2.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">texonomy 0.2.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-texonomy.texonomy"></span><dl class="py class">
+<dt class="sig sig-object py" id="texonomy.texonomy.Direction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">texonomy.texonomy.</span></span><span class="sig-name descname"><span class="pre">Direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#texonomy.texonomy.Direction" title="Permalink to this definition">#</a></dt>
+<dd><p>An enum wrapping the relative position of an entity in the ERD.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">texonomy.texonomy.</span></span><span class="sig-name descname"><span class="pre">ERDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Entity" title="texonomy.texonomy.Entity"><span class="pre">Entity</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#texonomy.texonomy.ERDiagram" title="Permalink to this definition">#</a></dt>
+<dd><p>An object representing the entity-relationship diagram.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram.entities">
+<span class="sig-name descname"><span class="pre">entities</span></span><a class="headerlink" href="#texonomy.texonomy.ERDiagram.entities" title="Permalink to this definition">#</a></dt>
+<dd><p>The entities in this diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <cite>Entity</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram.code">
+<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#texonomy.texonomy.ERDiagram.code" title="Permalink to this definition">#</a></dt>
+<dd><p>The LaTeX code that corresponds to all the entities and
+relationships in this diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram.add_relationship">
+<span class="sig-name descname"><span class="pre">add_relationship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Relationship" title="texonomy.texonomy.Relationship"><span class="pre">Relationship</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.ERDiagram.add_relationship" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds a relationship (and, therefore, another entity) to the ER diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rel</strong> (<cite>Relationship</cite>) – The Relationship object corresponding to one
+anchor entity (already in this diagram) and one new entity to
+be added to this diagram.</p></li>
+<li><p><strong>defining</strong> (<cite>bool</cite>) – True if this relationship is the defining
+relationship of a weak entity, False otherwise. Defaults to
+False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the anchor does not already exist in the diagram.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram.add_specialization">
+<span class="sig-name descname"><span class="pre">add_specialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">superclass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Entity" title="texonomy.texonomy.Entity"><span class="pre">Entity</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subclass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Entity" title="texonomy.texonomy.Entity"><span class="pre">Entity</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.ERDiagram.add_specialization" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds a specialization relationship to the ER diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>superclass</strong> (<cite>Entity</cite>) – The Entity object corresponding to an
+anchor entity (must already exist in this diagram), from which
+the subclass will specialize.</p></li>
+<li><p><strong>subclass</strong> (<cite>Entity</cite>) – The Entity object corresponding to a new
+entity which is a specialization of the superclass entity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the superclass does not exist in the diagram.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.ERDiagram.to_latex">
+<span class="sig-name descname"><span class="pre">to_latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#texonomy.texonomy.ERDiagram.to_latex" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the LaTeX code associated with this diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The LaTeX code, as a string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">texonomy.texonomy.</span></span><span class="sig-name descname"><span class="pre">Entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#texonomy.texonomy.Entity" title="Permalink to this definition">#</a></dt>
+<dd><p>An object representing an entity in the diagram.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#texonomy.texonomy.Entity.name" title="Permalink to this definition">#</a></dt>
+<dd><p>The display name of the entity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><a class="headerlink" href="#texonomy.texonomy.Entity.attributes" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of this entity’s
+attributes, which are displayed on the diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.primary">
+<span class="sig-name descname"><span class="pre">primary</span></span><a class="headerlink" href="#texonomy.texonomy.Entity.primary" title="Permalink to this definition">#</a></dt>
+<dd><p>The index of the primary key in the attributes list
+(by default it’s 0).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>int</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.weak">
+<span class="sig-name descname"><span class="pre">weak</span></span><a class="headerlink" href="#texonomy.texonomy.Entity.weak" title="Permalink to this definition">#</a></dt>
+<dd><p>True if the entity is weak, False if not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>bool</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.Entity.__str__" title="Permalink to this definition">#</a></dt>
+<dd><p>Formats an <cite>Entity</cite>’s fields in a readable way.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.add_attribute">
+<span class="sig-name descname"><span class="pre">add_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.Entity.add_attribute" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds an attribute to the end of the <cite>Entity</cite>’s attributes list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attribute</strong> (<cite>str</cite>) – The attribute to be added to the list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.set_primary">
+<span class="sig-name descname"><span class="pre">set_primary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.Entity.set_primary" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the primary key to an existing attribute, referenced by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attribute</strong> (<cite>str</cite>) – The name of the attribute to be set as new
+primary key.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>attribute</cite> does not exist in the Entity’s list of
+    attributes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Entity.to_latex">
+<span class="sig-name descname"><span class="pre">to_latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#texonomy.texonomy.Entity.to_latex" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the LaTeX code associated with this Entity object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The LaTeX code, as a string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">texonomy.texonomy.</span></span><span class="sig-name descname"><span class="pre">Relationship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Entity" title="texonomy.texonomy.Entity"><span class="pre">Entity</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Entity" title="texonomy.texonomy.Entity"><span class="pre">Entity</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cardinality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#texonomy.texonomy.Direction" title="texonomy.texonomy.Direction"><span class="pre">Direction</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#texonomy.texonomy.Relationship" title="Permalink to this definition">#</a></dt>
+<dd><p>An object representing a relationship between two entities in the diagram.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.anchor">
+<span class="sig-name descname"><span class="pre">anchor</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.anchor" title="Permalink to this definition">#</a></dt>
+<dd><p>The existing entity in the diagram to which the new
+entity should be attached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>Entity</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.new_entity">
+<span class="sig-name descname"><span class="pre">new_entity</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.new_entity" title="Permalink to this definition">#</a></dt>
+<dd><p>The new entity to attach to this diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>Entity</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.label">
+<span class="sig-name descname"><span class="pre">label</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.label" title="Permalink to this definition">#</a></dt>
+<dd><p>The display label given to this relationship; will be
+shown on the diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.cardinality">
+<span class="sig-name descname"><span class="pre">cardinality</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.cardinality" title="Permalink to this definition">#</a></dt>
+<dd><p>The
+cardinality of this relationship (e.g., one-to-many).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple</span></code> of two <code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple`s</span> <span class="pre">of</span> <span class="pre">`int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.direction">
+<span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.direction" title="Permalink to this definition">#</a></dt>
+<dd><p>The relative positioning of the new entity
+with respect to the anchor entity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>Direction</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.attributes" title="Permalink to this definition">#</a></dt>
+<dd><p>The attributes attached to
+this relationship, if any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <cite>str</cite>, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#texonomy.texonomy.Relationship.__str__" title="Permalink to this definition">#</a></dt>
+<dd><p>Formats an <cite>Entity</cite>’s fields in a readable way.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.add_attribute">
+<span class="sig-name descname"><span class="pre">add_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.add_attribute" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds an attribute to the end of the <cite>Relationship</cite>’s attributes list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attribute</strong> (<cite>str</cite>) – The attribute to be added to the list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="texonomy.texonomy.Relationship.attributes_to_latex">
+<span class="sig-name descname"><span class="pre">attributes_to_latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#texonomy.texonomy.Relationship.attributes_to_latex" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the LaTeX code associated with this <cite>Relationship</cite>’s attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The LaTeX code, as a string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="examples.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Examples</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Ivy Basseches
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Documentation</a><ul>
+<li><a class="reference internal" href="#texonomy.texonomy.Direction"><code class="docutils literal notranslate"><span class="pre">Direction</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram"><code class="docutils literal notranslate"><span class="pre">ERDiagram</span></code></a><ul>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram.entities"><code class="docutils literal notranslate"><span class="pre">ERDiagram.entities</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram.code"><code class="docutils literal notranslate"><span class="pre">ERDiagram.code</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram.add_relationship"><code class="docutils literal notranslate"><span class="pre">ERDiagram.add_relationship()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram.add_specialization"><code class="docutils literal notranslate"><span class="pre">ERDiagram.add_specialization()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.ERDiagram.to_latex"><code class="docutils literal notranslate"><span class="pre">ERDiagram.to_latex()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity"><code class="docutils literal notranslate"><span class="pre">Entity</span></code></a><ul>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.name"><code class="docutils literal notranslate"><span class="pre">Entity.name</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.attributes"><code class="docutils literal notranslate"><span class="pre">Entity.attributes</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.primary"><code class="docutils literal notranslate"><span class="pre">Entity.primary</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.weak"><code class="docutils literal notranslate"><span class="pre">Entity.weak</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.__str__"><code class="docutils literal notranslate"><span class="pre">Entity.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.add_attribute"><code class="docutils literal notranslate"><span class="pre">Entity.add_attribute()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.set_primary"><code class="docutils literal notranslate"><span class="pre">Entity.set_primary()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Entity.to_latex"><code class="docutils literal notranslate"><span class="pre">Entity.to_latex()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship"><code class="docutils literal notranslate"><span class="pre">Relationship</span></code></a><ul>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.anchor"><code class="docutils literal notranslate"><span class="pre">Relationship.anchor</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.new_entity"><code class="docutils literal notranslate"><span class="pre">Relationship.new_entity</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.label"><code class="docutils literal notranslate"><span class="pre">Relationship.label</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.cardinality"><code class="docutils literal notranslate"><span class="pre">Relationship.cardinality</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.direction"><code class="docutils literal notranslate"><span class="pre">Relationship.direction</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.attributes"><code class="docutils literal notranslate"><span class="pre">Relationship.attributes</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.__str__"><code class="docutils literal notranslate"><span class="pre">Relationship.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.add_attribute"><code class="docutils literal notranslate"><span class="pre">Relationship.add_attribute()</span></code></a></li>
+<li><a class="reference internal" href="#texonomy.texonomy.Relationship.attributes_to_latex"><code class="docutils literal notranslate"><span class="pre">Relationship.attributes_to_latex()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>
