@@ -11,7 +11,7 @@ name = "texonomy"
 authors = [{name = "Ivy Basseches", email = "imb2139@columbia.edu"}]
 description="A tool that generates entity-relationship diagrams in LaTeX."
 readme = "README.md"
-version = "0.1.1"
+version = "0.1.2"
 requires-python = ">=3.8"
 
 dependencies = []
